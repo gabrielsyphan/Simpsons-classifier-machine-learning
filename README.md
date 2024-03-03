@@ -1,0 +1,4 @@
+Required jars:
+
+* Weka
+* OpenCV
