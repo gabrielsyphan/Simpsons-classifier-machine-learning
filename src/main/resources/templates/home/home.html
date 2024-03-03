@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{base :: base-head('Home')}"></head>
+<body>
+
+<div class="container-center">
+    <div class="d-block">
+        <form class="ui form" id="uploadForm" enctype="multipart/form-data">
+            <div class="field">
+                <label>Upload your image</label>
+                <input type="file" id="fileInput" name="file">
+            </div>
+
+            <button type="submit" class="ui primary button">
+                Extract
+            </button>
+        </form>
+
+        <div class="img-container">
+            <div class="img-preview" id="imgPreview"></div>
+            <div class="img-info hidden" id="dataDisplay"></div>
+        </div>
+    </div>
+</div>
+
+<script th:replace="~{base :: base-script}"></script>
+</body>
+</html>
