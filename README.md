@@ -1,62 +1,62 @@
-##  Visão geral
-O sistema de software oferece recursos para classificar imagens de personagens do programa de televisão Os Simpsons. Os usuários interagem por meio de uma interface web construída com modelos Spring MVC e Thymeleaf. Na página inicial, eles podem fazer upload de uma imagem representando um personagem dos Simpsons por meio de um formulário de upload de arquivo.
-Depois de enviada, a imagem é passada para um serviço de back-end que utiliza técnicas de visão computacional para extrair características numéricas. Este processo analisa o conteúdo dos pixels, detectando cores e objetos para produzir um vetor característico que encapsula o perfil visual da imagem. Por exemplo, ele pode detectar as porcentagens de pixels laranja, azul e cinza correspondentes a artigos de vestuário.
-As características numéricas são então inseridas em um modelo de aprendizado de máquina Naive Bayes pré-treinado. Este modelo foi otimizado através de dados de treinamento para classificar imagens com base em características visuais. Ele analisa o vetor de entrada e gera uma distribuição de probabilidade indicando qual personagem dos Simpsons a imagem provavelmente representa. O caractere com maior probabilidade é retornado e exibido ao usuário junto com as características extraídas.
-O aplicativo é construído em Spring Boot, que cuida da configuração e inicialização do servidor web. Isso permite o rápido desenvolvimento dos recursos de aprendizado de máquina em um aplicativo Web pronto para produção. Por meio dessa interface intuitiva, os usuários podem classificar facilmente as imagens dos personagens dos Simpsons, aproveitando a visão computacional automatizada e as técnicas de aprendizado de máquina.
+## Overview
+The software system provides capabilities for classifying images of characters from the television show The Simpsons. Users interact through a web interface built with Spring MVC and Thymeleaf templates. On the homepage, they can upload an image depicting a Simpsons character via a file upload form.
+Once submitted, the image is passed to a back-end service that leverages computer vision techniques to extract numeric characteristics. This process analyzes the pixel contents, detecting colors and objects to produce a characteristic vector encapsulating the image’s visual profile. For example, it may detect the percentages of orange, blue, and grey pixels corresponding to clothing articles.
+The numeric characteristics are then fed into a pre-trained Naive Bayes machine learning model. This model has been optimized through training data to classify images based on visual characteristics. It analyzes the input vector and outputs a probability distribution indicating which Simpsons character the image most likely depicts. The character with the highest probability is returned and displayed to the user along with the extracted characteristics.
+The application is built on Spring Boot, which handles configuration and launching the web server. This allows rapid development of the machine learning capabilities into a production-ready web application. Through this intuitive interface, users can easily classify images of Simpsons characters by leveraging the automated computer vision and machine learning techniques.
 
-## Características
-* O sistema permitirá que os usuários carreguem arquivos de imagem por meio de um formulário web.
-* O sistema processará e analisará arquivos de imagem carregados em formatos padrão como JPG, PNG, etc.
-* O sistema deve otimizar e pré-processar imagens para prepará-las para análise de pixels.
-* O sistema analisará programaticamente as cores dos pixels e os objetos na imagem.
-* O sistema calculará a porcentagem ou proporção do total de pixels da imagem com características específicas.
-* O sistema deve encapsular características e rótulos extraídos em objetos de transferência de dados.
-* O sistema deverá fornecer uma interface para classificação de imagens com base nas características extraídas.
-* O sistema deverá utilizar um modelo de aprendizado de máquina Naive Bayes para classificar as características da imagem.
-* O sistema deverá possuir um conjunto de dados de treinamento com exemplos rotulados para construir o modelo de classificação.
-* O sistema classificará as imagens em rótulos conhecidos com base nas características extraídas.
-* O sistema deve retornar os resultados da classificação ao usuário como respostas JSON.
-* O sistema atualizará a exibição da web dinamicamente para mostrar os resultados da classificação.
-* O sistema deverá utilizar modelos modulares para uma estrutura de página consistente.
-* O sistema deve usar JavaScript para atualizações dinâmicas de páginas e comunicação assíncrona.
-* O sistema deve expor uma API REST por meio de um backend Spring MVC.
-* O sistema deve aproveitar o Spring Boot para inicialização e configuração do aplicativo.
-* O sistema deve se conectar a um banco de dados MySQL usando Spring Data JPA.
-* O sistema deve externalizar a configuração por meio das propriedades do Spring Boot.
-* O sistema deve registrar erros e exceções com rastreamentos de pilha.
-* O sistema deverá possuir testes automatizados para validação de startup e integração.
+## Features
+* The system shall allow users to upload image files through a web form.
+* The system shall process and parse uploaded image files in standard formats like JPG, PNG, etc.
+* The system shall optimize and preprocess images to prepare them for pixel analysis.
+* The system shall programmatically analyze pixel colors and objects in the image.
+* The system shall calculate the percentage or ratio of total image pixels with particular characteristics.
+* The system shall encapsulate extracted characteristics and labels into data transfer objects.
+* The system shall provide an interface for classifying images based on extracted characteristics.
+* The system shall utilize a Naive Bayes machine learning model to classify image characteristics.
+* The system shall have a training data set with labeled examples to build the classification model.
+* The system shall classify images into known labels based on the extracted characteristics.
+* The system shall return classification results to the user as JSON responses.
+* The system shall update the web display dynamically to show classification results.
+* The system shall utilize modular templates for consistent page structure.
+* The system shall use JavaScript for dynamic page updates and asynchronous communication.
+* The system shall expose a REST API through a Spring MVC backend.
+* The system shall leverage Spring Boot for application initialization and configuration.
+* The system shall connect to a MySQL database using Spring Data JPA.
+* The system shall externalize configuration through Spring Boot properties.
+* The system shall log errors and exceptions with stack traces.
+* The system shall have automated tests to validate startup and integration.
 
-## Entidades
-* Imagem: Uma imagem digital enviada pelo usuário para ser classificada. Ele contém dados visuais de pixels que são analisados.
-* Característica: Uma representação numérica de atributos visuais extraídos da imagem, como histogramas coloridos. Eles formam o vetor de recursos.
-* Classificação: O processo de análise das características de uma imagem para determinar qual personagem dos Simpsons ela representa.
-* Classificador: O modelo de aprendizado de máquina que realiza a classificação, implementado aqui com Naive Bayes.
-* Controlador: o componente da web que lida com solicitações de upload e classificação de imagens.
-* Serviço: Componentes que encapsulam a lógica para extrair dados de imagens e classificar imagens.
-* Modelo: Classes que representam dados como as características extraídas.
-* Subsistemas
-* Processamento de imagem
-* O subsistema de processamento de imagens fornece funcionalidade para extrair dados significativos de imagens enviadas pelo usuário. Ele converte os pixels brutos da imagem em representações numéricas que capturam características visuais como perfis de cores e formas de objetos. Isso permite que o conteúdo semântico da imagem seja quantificado para análise posterior. O valor deste subsistema é que permite ao software compreender as imagens fornecidas pelo usuário em um nível granular, transformando os pixels brutos em dados estruturados. Os principais artefatos que implementam isso são a interface e a classe DataExtractionService, que lidam com a conversão de imagem em dados, e o modelo ExtractDataDto, que encapsula os dados extraídos. Isso difere do subsistema de aprendizado de máquina porque se concentra estritamente no processamento e quantificação de imagens, em vez de realizar análises preditivas.
+## Entities
+* Image: A digital picture uploaded by the user to be classified. It contains visual pixel data that is analyzed.
+* Characteristic: A numeric representation of visual attributes extracted from the image, like color histograms. These form the feature vector.
+* Classification: The process of analyzing an image’s characteristics to determine which Simpsons character it depicts.
+* Classifier: The machine learning model that performs the classification, implemented here with Naive Bayes.
+* Controller: The web component that handles image upload and classification requests.
+* Service: Components that encapsulate logic for extracting image data and classifying images.
+* Model: Classes that represent data like the extracted characteristics.
+* Sub-systems
+* Image Processing
+* The Image Processing sub-system provides functionality to extract meaningful data from images uploaded by the user. It converts the raw image pixels into numerical representations that capture visual characteristics like color profiles and object shapes. This allows the semantic contents of the image to be quantified for further analysis. The value of this sub-system is it enables the software to understand the user-provided images at a granular level by transforming the raw pixels into structured data. The key artifacts that implement this are the DataExtractionService interface and class, which handle the image-to-data conversion, and the ExtractDataDto model, which encapsulates the extracted data. This differs from the Machine Learning sub-system in that it focuses strictly on image processing and quantification rather than conducting predictive analysis.
 
-##  Aprendizado de máquina
-O subsistema Machine Learning fornece recursos para classificar imagens com base nas características visuais extraídas. Ele aplica modelos estatísticos aos dados numéricos do subsistema de processamento de imagens para prever qual caractere uma imagem provavelmente representa. Isso permite que o software identifique automaticamente o assunto da imagem carregada pelo usuário. O valor deste subsistema é que ele permite funcionalidade de classificação robusta sem exigir regras manuais ou lógica complexa dos desenvolvedores. A interface e a classe ImageClassifierService permitem isso abrigando modelos pré-treinados que podem ser aplicados a novos dados. Isso difere do subsistema de processamento de imagem porque se concentra na modelagem preditiva em vez da análise de imagem em nível de pixel.
+## Machine Learning
+The Machine Learning sub-system provides capabilities to classify images based on the extracted visual characteristics. It applies statistical models to the numeric data from the Image Processing sub-system to predict which character an image most likely depicts. This enables the software to automatically identify the subject of the user’s uploaded image. The value of this sub-system is it allows robust classification functionality without requiring manual rules or complex logic from developers. The ImageClassifierService interface and class enable this by housing pre-trained models that can be applied to new data. This differs from the Image Processing sub-system in that it focuses on predictive modeling rather than pixel-level image analysis.
 
-## Interface web
-O subsistema Web Interface permite a interação do usuário por meio de um frontend web. Ele fornece os controladores, modelos e ativos estáticos necessários para permitir uploads de imagens e exibir resultados no navegador. Isso oferece aos usuários uma maneira intuitiva de aproveitar os recursos do sistema. O valor é que ele abstrai os detalhes técnicos dos serviços de back-end, expondo apenas as principais interações necessárias por meio de interfaces web padrão. O HomeController lida com solicitações e respostas do usuário, suportadas por modelos HTML, JavaScript e CSS. Isso difere de outros subsistemas que se concentram no processamento backend em vez da apresentação ao usuário.
+## Web Interface
+The Web Interface sub-system enables user interaction through a web frontend. It provides the necessary controllers, templates, and static assets to allow image uploads and display results in the browser. This gives users an intuitive way to leverage the system’s capabilities. The value is it abstracts away the technical details of the backend services, exposing only the key interactions needed through standard web interfaces. The HomeController handles user requests and responses, supported by HTML templates, JavaScript, and CSS. This differs from the other sub-systems that focus on backend processing rather than user presentation.
 
-## Processamento de imagem
-O subsistema de processamento de imagens fornece funcionalidade para extrair dados significativos de imagens enviadas pelo usuário. Ele converte os pixels brutos da imagem em representações numéricas que capturam características visuais como perfis de cores e formas de objetos. Isso permite que o conteúdo semântico da imagem seja quantificado para análise posterior. O valor deste subsistema é que permite ao software compreender as imagens fornecidas pelo usuário em um nível granular, transformando os pixels brutos em dados estruturados. Os principais artefatos que implementam isso são a interface e a classe DataExtractionService, que lidam com a conversão de imagem em dados, e o modelo ExtractDataDto, que encapsula os dados extraídos. Isso difere do subsistema de aprendizado de máquina porque se concentra estritamente no processamento e quantificação de imagens, em vez de realizar análises preditivas.
+## Image Processing
+The Image Processing sub-system provides functionality to extract meaningful data from images uploaded by the user. It converts the raw image pixels into numerical representations that capture visual characteristics like color profiles and object shapes. This allows the semantic contents of the image to be quantified for further analysis. The value of this sub-system is it enables the software to understand the user-provided images at a granular level by transforming the raw pixels into structured data. The key artifacts that implement this are the DataExtractionService interface and class, which handle the image-to-data conversion, and the ExtractDataDto model, which encapsulates the extracted data. This differs from the Machine Learning sub-system in that it focuses strictly on image processing and quantification rather than conducting predictive analysis.
 
-## Aprendizado de máquina
-O subsistema Machine Learning fornece recursos para classificar imagens com base nas características visuais extraídas. Ele aplica modelos estatísticos aos dados numéricos do subsistema de processamento de imagens para prever qual caractere uma imagem provavelmente representa. Isso permite que o software identifique automaticamente o assunto da imagem carregada pelo usuário. O valor deste subsistema é que ele permite funcionalidade de classificação robusta sem exigir regras manuais ou lógica complexa dos desenvolvedores. A interface e a classe ImageClassifierService permitem isso abrigando modelos pré-treinados que podem ser aplicados a novos dados. Isso difere do subsistema de processamento de imagem porque se concentra na modelagem preditiva em vez da análise de imagem em nível de pixel.
+## Machine Learning
+The Machine Learning sub-system provides capabilities to classify images based on the extracted visual characteristics. It applies statistical models to the numeric data from the Image Processing sub-system to predict which character an image most likely depicts. This enables the software to automatically identify the subject of the user’s uploaded image. The value of this sub-system is it allows robust classification functionality without requiring manual rules or complex logic from developers. The ImageClassifierService interface and class enable this by housing pre-trained models that can be applied to new data. This differs from the Image Processing sub-system in that it focuses on predictive modeling rather than pixel-level image analysis.
 
-## Interface web
-O subsistema Web Interface permite a interação do usuário por meio de um frontend web. Ele fornece os controladores, modelos e ativos estáticos necessários para permitir uploads de imagens e exibir resultados no navegador. Isso oferece aos usuários uma maneira intuitiva de aproveitar os recursos do sistema. O valor é que ele abstrai os detalhes técnicos dos serviços de back-end, expondo apenas as principais interações necessárias por meio de interfaces web padrão. O HomeController lida com solicitações e respostas do usuário, suportadas por modelos HTML, JavaScript e CSS. Isso difere de outros subsistemas que se concentram no processamento backend em vez da apresentação ao usuário.
+## Web Interface
+The Web Interface sub-system enables user interaction through a web frontend. It provides the necessary controllers, templates, and static assets to allow image uploads and display results in the browser. This gives users an intuitive way to leverage the system’s capabilities. The value is it abstracts away the technical details of the backend services, exposing only the key interactions needed through standard web interfaces. The HomeController handles user requests and responses, supported by HTML templates, JavaScript, and CSS. This differs from the other sub-systems that focus on backend processing rather than user presentation.
 
-## Fluxo de dados
-O sistema permite aos usuários classificar imagens de personagens dos Simpsons por meio de uma interface web intuitiva. Os usuários começam enviando um arquivo de imagem representando um personagem usando o formulário de upload de imagens. Esta imagem é passada para o serviço de extração de dados, que analisa o conteúdo do pixel para produzir uma série de características numéricas que representam características visuais como cores de roupas e atributos faciais.
-A matriz de características numéricas é então alimentada no serviço de classificação de imagens, que utiliza um modelo de aprendizado de máquina pré-treinado para prever qual personagem dos Simpsons é mais provavelmente representado com base nos dados visuais. A classificação de caracteres prevista é retornada.
-Por fim, as características numéricas extraídas e a classificação de caracteres prevista são exibidas ao usuário na interface web, fornecendo resultados informativos sobre a imagem que ele carregou. Esse fluxo contínuo desde o upload da imagem até a análise visual, classificação e exibição de resultados permite que os usuários identifiquem facilmente os personagens dos Simpsons por meio de um sistema automatizado de análise de imagens.
+## Data Flow
+The system enables users to classify images of Simpsons characters through an intuitive web interface. Users start by uploading an image file depicting a character using the image upload form. This image is passed to the data extraction service, which analyzes the pixel contents to produce an array of numeric characteristics representing visual features like clothing colors and facial attributes.
+The numeric characteristics array is then fed into the image classification service, which leverages a pre-trained machine learning model to predict which Simpsons character is most likely represented based on the visual data. The predicted character classification is returned.
+Finally, the extracted numeric characteristics and predicted character classification are displayed back to the user on the web interface, providing them with informative results about the image they uploaded. This seamless flow from image upload to visual analysis to classification and result display allows users to easily identify Simpsons characters through an automated image analysis system.
 
 ## Required jars:
 * Weka
