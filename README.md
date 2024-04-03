@@ -61,3 +61,4 @@ Finally, the extracted numeric characteristics and predicted character classific
 ## Required jars:
 * Weka
 * OpenCV
+* Maven
